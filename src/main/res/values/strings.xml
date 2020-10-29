@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">KotlinApp</string>
+    <string name="search">Search</string>
+</resources>
