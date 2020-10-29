@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.*
 import com.app.kotlinapp.R
 import com.app.kotlinapp.data.model.*
 import com.app.kotlinapp.ui.main.*
-import com.bumptech.glide.*
-import com.bumptech.glide.request.*
+
+
+import com.squareup.picasso.*
 
 /**
  * Created by santosh on 28/10/20.
@@ -34,9 +35,7 @@ class SearchMoveAdapter(private val context: Context,
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ViewHolder) {
             holder.tvTittle.text = movieList[position].title
-            Glide.with(context).load(movieList[position].poster)
-                .apply(RequestOptions().error(R.drawable.ic_no_image_available))
-                .into(holder.ivMoviePic)
+            Picasso.get().load(movieList[position].poster).error(R.drawable.ic_no_image_available).into(holder.ivMoviePic)
             holder.itemView.setOnClickListener {
                 context.startActivity(Intent(context,
                     MovieDetailsActivity::class.java).putExtra("movieId",

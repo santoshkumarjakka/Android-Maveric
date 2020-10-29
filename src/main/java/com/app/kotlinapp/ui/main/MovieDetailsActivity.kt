@@ -12,8 +12,7 @@ import com.app.kotlinapp.databinding.*
 import com.app.kotlinapp.ui.base.*
 import com.app.kotlinapp.ui.main.viewmodel.*
 import com.app.kotlinapp.utils.*
-import com.bumptech.glide.*
-import com.bumptech.glide.request.*
+import com.squareup.picasso.*
 import kotlinx.coroutines.*
 import kotlin.coroutines.*
 
@@ -68,9 +67,8 @@ class MovieDetailsActivity : AppCompatActivity(), CoroutineScope {
         binder.tvRate.text = Html.fromHtml("&#9733; ".plus(data?.imdbRating))
         binder.tvDec.text = data?.plot
         binder.tvYear.text = data?.year
-        Glide.with(this).load(data?.poster)
-            .apply(RequestOptions().fitCenter().error(R.drawable.ic_no_image_available))
-            .into(binder.ivMoviePoster)
+        Picasso.get().load(data?.poster).error(R.drawable.ic_no_image_available).into(binder.ivMoviePoster)
+
         binder.tvScore.text = data?.metascore?.let { setSpannableText("Score\n", it) }
         binder.tvReviews.text = data?.imdbRating?.let { setSpannableText("Reviews\n", it) }
         binder.tvVotes.text = data?.imdbVotes?.let { setSpannableText("Popularity\n", it) }
